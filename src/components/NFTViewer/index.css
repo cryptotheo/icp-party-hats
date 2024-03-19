@@ -1,5 +1,6 @@
 .grid-container {
-    height: 80vh;
+    height: 70vh;
+    flex: 1;
     margin: 0 5vw 36px 5vw;
     overflow: auto;
     display: grid;
@@ -8,11 +9,25 @@
     background-color: #12002C;
     scrollbar-width: none;
     border-radius: 10px;
-    padding: 20px;
+    padding: 0px;
   }
 
   .grid-container::-webkit-scrollbar {
     display: none; /* This will hide the scrollbar in WebKit browsers */
+  }
+
+.nft-viewer {
+  display: flex;
+  padding: 40px;
+  width: 100vw;
+}
+
+  .item-preview {
+    flex: none;
+    width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    height: 70vh;
   }
   
   .card-container {

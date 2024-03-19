@@ -1,4 +1,4 @@
-import "./stats.css"
+import "./index.css"
 import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,13 +28,9 @@ function Stats() {
 
 
   return <div className="stats-brand-container">
-    <div className="brand-container">
-        <img src="../../src/assets/avatar_1000x1000.png" className="brand-logo" alt="icphats logo" />
-        <h1>IC Party Hats</h1>
         <a href="https://twitter.com/icphats" className="social_links" target="_blank" rel="noopener noreferrer">
             <img src="../../src/assets/x_logo.png" alt="Follow us on Twitter" style={{ width: '24px', height: '24px' }} />
         </a>
-    </div>
     {stats && (
         <div>
           <div className="stats-container">

@@ -1,8 +1,10 @@
 .stats-brand-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: right;
     align-items: center;
-    height: 5vh;
+    padding: 20px;
+    padding-right: 100px;
+    column-gap: 150px;
     width: auto;
 }
 

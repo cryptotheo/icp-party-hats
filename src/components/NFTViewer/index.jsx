@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { Principal } from "@dfinity/principal";
-import Landing from "./pages/landing";
-//import splash from "../assets/splash.png"
-import "./App.css";
-import extjs from "./ic/extjs.js";
+import extjs from "../../ic/extjs.js";
 const api = extjs.connect("https://icp0.io/");
 const partyhatscanister = "gq5kt-4iaaa-aaaal-qdhuq-cai";
 
-function App() {
+import "./index.css"
+
+
+function NFT_Grid() {
   const [listings, setListings] = useState([]);
   const [tokens, setTokens] = useState([]);
   const [stats, setStats] = useState([]);
@@ -18,30 +17,7 @@ function App() {
   const [userCollectionState, setUserColletion] = useState([]);
   const itemsPerPage = 50;
 
-  // useEffect(() => {
-  //   (async () =>
-  //     await initJuno({
-  //       satelliteId: "zggvx-3aaaa-aaaal-adxyq-cai"
-  //     }))();
-  // }, []);
-
-  // const getUserCollectionn = async () => {
-  //   let address = extjs.toAddress(
-  //     "mnkns-ot2bw-totr7-hzfdh-npcio-ss4oz-dsc2e-6dheg-httzc-7d5ih-qqe",
-  //     0
-  //   );
-  //   let data;
-  //   var response = await fetch(
-  //     "https://us-central1-entrepot-api.cloudfunctions.net/api/user/" +
-  //       address +
-  //       "/all"
-  //   ).then((res) => res.json());
-  //   data = response.data;
-  //   data = data.map((a) => ({ ...a, token: a.id }));
-  //   setUserColletion(data);
-  // };
-
-  useEffect(() => {}, [loaded, userCollectionState]);
+  useEffect(() => { }, [loaded, userCollectionState]);
 
   useEffect(() => {
     (async () => {
@@ -117,13 +93,56 @@ function App() {
     }
   };
 
-  if (!loaded) return <div className="loading-container"></div>;
 
-  return (
-    <div className="content">
-      <Landing />
+  if (!loaded) return <div>merp</div>;
+
+  return <div className="nft-viewer">
+    <div className="item-preview">
+aa
     </div>
-  );
+    <div className="grid-container">
+      {listings
+        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        .map((tokenId, index) => {
+          return (
+            <div className="gradient-border">
+              <div className="card-container">
+                <div key={index} className="nft-image-container">
+                  <img
+                    src={`https://gq5kt-4iaaa-aaaal-qdhuq-cai.raw.icp0.io/?tokenid=${tokens && tokens[index].tokenId
+                      }`}
+                    alt={`Item ${index + 1}`}
+                    className="nft-image"
+                  />
+                </div>
+                <div className="card-description-container">
+                  <div className="card-d-container-row">
+                    <p className="">#{index + 1}</p>
+                    <div className="nri-container">
+                      <p className="nri-text">47%</p>
+                    </div>
+                  </div>
+                  <div className="card-d-container-row">
+                    <div className="nft-price-container">
+                      <p>1.384</p>
+                      <img
+                        className="dfinity-price-image"
+                        src="../src/assets/ICP.png"
+                        alt="dfinity logo"
+                      />
+                    </div>
+                    <div className="buy-now-container">
+                      <p className="buy-now-text">buy</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  </div>
+
 }
 
-export default App;
+export default NFT_Grid;
