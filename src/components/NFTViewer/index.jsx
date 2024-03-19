@@ -4,7 +4,10 @@ const api = extjs.connect("https://icp0.io/");
 const partyhatscanister = "gq5kt-4iaaa-aaaal-qdhuq-cai";
 
 import "./index.css"
+import Stats from "../Stats/index.jsx";
 
+import cardview_icon from "../../assets/card-view-icon.png";
+import gridview_icon from "../../assets/grid-view-icon.png";
 
 function NFT_Grid() {
   const [listings, setListings] = useState([]);
@@ -96,53 +99,61 @@ function NFT_Grid() {
 
   if (!loaded) return <div>merp</div>;
 
-  return <div className="nft-viewer">
-    <div className="item-preview">
-aa
+  return <>
+    <div className="state-control">
+      <div className="viewmodes">
+        <a href="/"><img src={cardview_icon} width={20}/></a> &nbsp;
+        <a href="/"><img src={gridview_icon} width={20}/></a>
+      </div>
+      <Stats />
     </div>
-    <div className="grid-container">
-      {listings
-        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-        .map((tokenId, index) => {
-          return (
-            <div className="gradient-border">
-              <div className="card-container">
-                <div key={index} className="nft-image-container">
-                  <img
-                    src={`https://gq5kt-4iaaa-aaaal-qdhuq-cai.raw.icp0.io/?tokenid=${tokens && tokens[index].tokenId
-                      }`}
-                    alt={`Item ${index + 1}`}
-                    className="nft-image"
-                  />
-                </div>
-                <div className="card-description-container">
-                  <div className="card-d-container-row">
-                    <p className="">#{index + 1}</p>
-                    <div className="nri-container">
-                      <p className="nri-text">47%</p>
-                    </div>
+    <div className="nft-viewer">
+      <div className="item-preview">
+        aa
+      </div>
+      <div className="grid-container">
+        {listings
+          .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+          .map((tokenId, index) => {
+            return (
+              <div className="gradient-border">
+                <div className="card-container">
+                  <div key={index} className="nft-image-container">
+                    <img
+                      src={`https://gq5kt-4iaaa-aaaal-qdhuq-cai.raw.icp0.io/?tokenid=${tokens && tokens[index].tokenId
+                        }`}
+                      alt={`Item ${index + 1}`}
+                      className="nft-image"
+                    />
                   </div>
-                  <div className="card-d-container-row">
-                    <div className="nft-price-container">
-                      <p>1.384</p>
-                      <img
-                        className="dfinity-price-image"
-                        src="../src/assets/ICP.png"
-                        alt="dfinity logo"
-                      />
+                  <div className="card-description-container">
+                    <div className="card-d-container-row">
+                      <p className="">#{index + 1}</p>
+                      <div className="nri-container">
+                        <p className="nri-text">47%</p>
+                      </div>
                     </div>
-                    <div className="buy-now-container">
-                      <p className="buy-now-text">buy</p>
+                    <div className="card-d-container-row">
+                      <div className="nft-price-container">
+                        <p>1.384</p>
+                        <img
+                          className="dfinity-price-image"
+                          src="../src/assets/ICP.png"
+                          alt="dfinity logo"
+                        />
+                      </div>
+                      <div className="buy-now-container">
+                        <p className="buy-now-text">buy</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
-  </div>
-
+  </>
 }
 
 export default NFT_Grid;

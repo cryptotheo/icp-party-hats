@@ -11,7 +11,6 @@ const Landing = () => {
             </div>
             <div className = "Landing">
                 <Navbar />
-                <Stats />
                 {/* <Search_Filter></Search_Filter> */}
                 <NFTViewer />
             </div>

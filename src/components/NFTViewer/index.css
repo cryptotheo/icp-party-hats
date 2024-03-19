@@ -18,15 +18,31 @@
 
 .nft-viewer {
   display: flex;
-  padding: 40px;
+  padding: 20px;
   width: 100vw;
 }
 
+.viewmodes {
+  display: flex;
+  column-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  padding-right: 50px;
+  border-right: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.state-control{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex-direction: row;
+}
   .item-preview {
     flex: none;
     width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
+    border-right: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
     height: 70vh;
   }
   
