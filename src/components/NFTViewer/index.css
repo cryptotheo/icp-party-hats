@@ -32,6 +32,12 @@
   border-right: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.viewmodes>a{
+  width: 20px;
+  height: 20px;
+  padding: 1px;
+}
+
 .state-control{
   display: flex;
   justify-content: right;
@@ -70,7 +76,7 @@
   }
   
   .card-description-container{
-    background-color: rgb(55, 55, 55);
+    background-image: linear-gradient(to right, #a000a0, #9e9797);
     border-radius: 0px 0px 8px 8px;
   }
   
@@ -103,6 +109,10 @@
     align-items: center;
   }
   
+  .preview-container {
+    padding: 40px;
+  }
+
   .dfinity-price-image{
     height: 0.8em;
     padding-left: 4px;

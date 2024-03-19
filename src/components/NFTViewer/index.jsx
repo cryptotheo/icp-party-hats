@@ -8,8 +8,51 @@ import Stats from "../Stats/index.jsx";
 
 import cardview_icon from "../../assets/card-view-icon.png";
 import gridview_icon from "../../assets/grid-view-icon.png";
+import ItemPreview from "./ItemPreview.jsx";
+
+const NftItem = ({_viewMode, tokens, index}) => {
+  return (
+    <div className="gradient-border">
+      <div className="card-container">
+        <div key={index} className="nft-image-container">
+          <img
+            src={`https://gq5kt-4iaaa-aaaal-qdhuq-cai.raw.icp0.io/?tokenid=${tokens && tokens[index].tokenId
+              }`}
+            alt={`Item ${index + 1}`}
+            className="nft-image"
+          />
+        </div>
+        {
+          _viewMode == 2 &&
+          <div className="card-description-container">
+            <div className="card-d-container-row">
+              <p className="">#{index + 1}</p>
+              <div className="nri-container">
+                <p className="nri-text">47%</p>
+              </div>
+            </div>
+            <div className="card-d-container-row">
+              <div className="nft-price-container">
+                <p>1.384</p>
+                <img
+                  className="dfinity-price-image"
+                  src="../src/assets/ICP.png"
+                  alt="dfinity logo"
+                />
+              </div>
+              <div className="buy-now-container">
+                <p className="buy-now-text">buy</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  );
+}
 
 function NFT_Grid() {
+  const [viewMode, setViewMode] = useState(1);
   const [listings, setListings] = useState([]);
   const [tokens, setTokens] = useState([]);
   const [stats, setStats] = useState([]);
@@ -102,54 +145,20 @@ function NFT_Grid() {
   return <>
     <div className="state-control">
       <div className="viewmodes">
-        <a href="/"><img src={cardview_icon} width={20}/></a> &nbsp;
-        <a href="/"><img src={gridview_icon} width={20}/></a>
+        <a href="#" onClick={() => { setViewMode(1) }} style={{border: (viewMode==1?"1px solid white":"0px")}}><img src={cardview_icon} alt="Image View" width={20} /></a> &nbsp;
+        <a href="#" onClick={() => { setViewMode(2) }} style={{border: (viewMode==2?"1px solid white":"0px")}}><img src={gridview_icon} alt="Card View" width={20} /></a>
       </div>
       <Stats />
     </div>
     <div className="nft-viewer">
       <div className="item-preview">
-        aa
+        <ItemPreview />
       </div>
       <div className="grid-container">
         {listings
           .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
           .map((tokenId, index) => {
-            return (
-              <div className="gradient-border">
-                <div className="card-container">
-                  <div key={index} className="nft-image-container">
-                    <img
-                      src={`https://gq5kt-4iaaa-aaaal-qdhuq-cai.raw.icp0.io/?tokenid=${tokens && tokens[index].tokenId
-                        }`}
-                      alt={`Item ${index + 1}`}
-                      className="nft-image"
-                    />
-                  </div>
-                  <div className="card-description-container">
-                    <div className="card-d-container-row">
-                      <p className="">#{index + 1}</p>
-                      <div className="nri-container">
-                        <p className="nri-text">47%</p>
-                      </div>
-                    </div>
-                    <div className="card-d-container-row">
-                      <div className="nft-price-container">
-                        <p>1.384</p>
-                        <img
-                          className="dfinity-price-image"
-                          src="../src/assets/ICP.png"
-                          alt="dfinity logo"
-                        />
-                      </div>
-                      <div className="buy-now-container">
-                        <p className="buy-now-text">buy</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
+            return <NftItem _viewMode={viewMode} index={index} tokens={tokens}/>
           })}
       </div>
     </div>
